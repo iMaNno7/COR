@@ -9,9 +9,9 @@ public abstract class DiscountHandler : IHandler
         _nextHandler = discountHandler;
         Percent = percent;
     }
-    public virtual void Calc(ref Order order)
+    public virtual Order Calc(Order order)
     {
-        _nextHandler?.Calc(ref order);
+        return order;
     }
 
 }

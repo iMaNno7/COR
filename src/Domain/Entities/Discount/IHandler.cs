@@ -2,5 +2,5 @@
 
 public interface IHandler
 {
-    void Calc(ref Order order);
+    Order Calc(Order order);
 }

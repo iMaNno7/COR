@@ -1,4 +1,6 @@
 ﻿using COR.Domain.Entities.Discount;
+using COR.Domain.Exceptions;
+using COR.Domain.Validation;
 
 namespace COR.Domain.Services;
 
@@ -16,8 +18,16 @@ public class DiscountService
     {
         var order = _orderRepository.GetOrder(orderId);
 
-        _discountHandler.Calc(ref order);
+        order.CheckValidityOrder(checkOrder);
 
-        return order;
+        return _discountHandler.Calc(order);
+
+    }
+
+    public void checkOrder(Order order)
+    {
+        if (order == null) throw new OrderNullException();
+        else if (order.Price <= 0)        
+            throw new InvalidPriceException(order.Price);        
     }
 }
