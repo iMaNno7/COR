@@ -9,9 +9,8 @@ namespace COR.Domain.Validation
 {
     public static class CheckValidity
     {
-        public delegate void CheckValidate(Order order);
-
-        public static void CheckValidityOrder(this Order order, CheckValidate validateMehtod)
+     
+        public static void CheckValidityOrder(this Order order,Action<Order> validateMehtod)
         {
             try
             {
